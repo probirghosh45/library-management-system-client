@@ -63,7 +63,7 @@ export default function BooksPage() {
     refetch();
   };
 
-  const handleBorrowSubmit = async (e: React.FormEvent) => {};
+  const handleBorrowSubmit = async () => {};
 
   const confirmDelete = async () => {
     if (confirmDeleteId) {

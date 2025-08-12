@@ -27,7 +27,7 @@ export const booksApi = createApi({
     //Get Book by Id
     getBookById: builder.query<Book, string>({
       query: (id) => `/books/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Books', id }],
+      providesTags: (_result, _error, id) => [{ type: 'Books', id }],
     }),
 
     // Add Book
@@ -47,7 +47,7 @@ export const booksApi = createApi({
         method: 'PUT',
         body,
       }),
-      invalidatesTags: (result, error, arg) => [
+      invalidatesTags: (_result, _error, arg) => [
         { type: 'Books', id: arg.id },
         { type: 'Books', id: 'LIST' },
       ],
@@ -59,7 +59,7 @@ export const booksApi = createApi({
         url: `/books/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, id) => [
+      invalidatesTags: (_result, _error, id) => [
         { type: 'Books', id },
         { type: 'Books', id: 'LIST' },
       ],
