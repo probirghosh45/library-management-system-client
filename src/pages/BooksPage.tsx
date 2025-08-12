@@ -13,9 +13,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import ClipLoader from "react-spinners/ClipLoader";
+import toast from "react-hot-toast";
 
 export default function BooksPage() {
-  const { data: books, isLoading, isError, refetch } = useGetBooksQuery();
+  const { data: books, isLoading, isError,error , refetch } = useGetBooksQuery();
   const [deleteBook] = useDeleteBookMutation();
   const [updateBook] = useUpdateBookMutation();
 
@@ -33,8 +35,25 @@ export default function BooksPage() {
     "FANTASY",
   ];
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something went wrong</p>;
+ if (isLoading)
+  return (
+    <div className="flex justify-center items-center h-64">
+      <ClipLoader color="#3b82f6" size={50} />
+    </div>
+  );
+   if (isError) {
+    // Show toast notification once on error
+    toast.error(
+      error && "status" in error
+        ? `Error ${error.status}: ${(error.data as any)?.message || "Something went wrong"}`
+        : "Something went wrong"
+    );
+    return (
+      <div className="flex justify-center items-center h-64 text-red-500">
+        Failed to load books.
+      </div>
+    );
+  }
 
   const handleEdit = (book: any) => {
     setSelectedBook(book);
@@ -78,8 +97,6 @@ export default function BooksPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">Books</h1>
-
       {/* Table container with blur and opacity when dialog open */}
       <div
         className={`transition-all duration-300 ${

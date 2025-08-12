@@ -11,7 +11,7 @@ export default function HomePage() {
         all from one simple interface.
       </p>
 
-      <div className="flex flex-wrap gap-4 justify-center">
+      {/* <div className="flex flex-wrap gap-4 justify-center">
         <Link
           to="/books"
           className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow"
@@ -30,7 +30,7 @@ export default function HomePage() {
         >
           Borrow Summary
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
