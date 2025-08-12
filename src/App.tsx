@@ -1,9 +1,11 @@
-import { Button } from './components/ui/button'
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click Me</Button>
+    <div className="min-h-screen flex flex-col">
+      <main className="flex-1 container mx-auto p-4">
+        <Outlet />
+      </main>
     </div>
-  )
+  );
 }
